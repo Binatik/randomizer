@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { getRandomState } from "@src/toolkit";
-import { useSelector } from "react-redux";
 
 const _Button = styled.button`
   cursor: pointer;
@@ -25,19 +22,10 @@ const _Button = styled.button`
   }
 `;
 
-const Button = ({ getRandom, actions, ...props }) => {
-  const { min, max } = useSelector(getRandomState);
-  const dispatch = useDispatch();
-  
+const Button = ({ updateNumber, ...props }) => {
   return (
     <>
-      <_Button
-        onClick={() => {
-          dispatch(actions(getRandom(min, max)));
-        }}
-        {...props}
-        type="button"
-      >
+      <_Button onClick={() => updateNumber()} {...props} type="button">
         Сгенерировать
       </_Button>
     </>

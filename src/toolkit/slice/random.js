@@ -17,11 +17,16 @@ const random = createSlice({
       state.max = action.payload;
     },
 
-    setNumber(state, action) {
-      state.number = action.payload;
+    getRandom(state) {
+      let { min, max } = state;
+
+      min = Math.ceil(min);
+      max = Math.floor(max);
+
+      state.number = Math.floor(Math.random() * (max - min)) + min;
     },
   },
 });
 
-export const { setValueMin, setValueMax, setNumber } = random.actions;
+export const { setValueMin, setValueMax, getRandom } = random.actions;
 export default random.reducer;

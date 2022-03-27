@@ -3,9 +3,9 @@ import styled from "styled-components";
 import InputText from "./InputText";
 import Button from "./Button";
 
-import { useSelector } from "react-redux";
-import { setValueMin, setValueMax, setNumber } from "@src/toolkit/slice/random";
+import { useDispatch, useSelector } from "react-redux";
 import { getRandomState } from "@src/toolkit";
+import { setValueMin, setValueMax, getRandom } from "@src/toolkit/slice/random";
 
 //StyledComponents
 import { Container } from "@src/store/styleComponents";
@@ -39,12 +39,12 @@ const Title = styled.h1`
 `;
 
 const Content = () => {
+  const dispatch = useDispatch();
+
   const { number } = useSelector(getRandomState);
 
-  function getRandom(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
+  function updateNumber() {
+    return dispatch(getRandom());
   }
 
   return (
@@ -59,7 +59,7 @@ const Content = () => {
             <Container>
               <InputText labelId={"minValue"} text="от" actions={setValueMin} />
               <InputText labelId={"maxValue"} text="до" actions={setValueMax} />
-              <Button padding={"10px 0"} getRandom={getRandom} actions={setNumber} />
+              <Button padding={"10px 0"} updateNumber={updateNumber} />
             </Container>
           </FlexContainer>
         </Section>
