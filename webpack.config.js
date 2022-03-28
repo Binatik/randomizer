@@ -50,7 +50,7 @@ let configWebPack = {
   plugins: [
     new MiniCssExtractPlugin({ filename: "style.css" }),
     new HtmlWebpackPlugin({
-      favicon: path.resolve(__dirname, "./src/images/react.ico"),
+      favicon: path.resolve(__dirname, "./src/images/sample.ico"),
       filename: "index.html",
       template: "./public/index.html",
     }),

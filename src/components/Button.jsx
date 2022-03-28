@@ -22,10 +22,10 @@ const _Button = styled.button`
   }
 `;
 
-const Button = ({ updateNumber, ...props }) => {
+const Button = ({ handleClick, ...props }) => {
   return (
     <>
-      <_Button onClick={() => updateNumber()} {...props} type="button">
+      <_Button onClick={() => handleClick()} {...props} type="button">
         Сгенерировать
       </_Button>
     </>

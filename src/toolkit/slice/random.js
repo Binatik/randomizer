@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   min: 0,
-  max: 0,
-  number: 0,
+  max: 100,
+  quantity: 1,
+  numbers: [],
 };
 
 const random = createSlice({
@@ -17,16 +18,22 @@ const random = createSlice({
       state.max = action.payload;
     },
 
+    setDuantity(state, action) {
+      state.quantity = action.payload;
+    },
+
     getRandom(state) {
-      let { min, max } = state;
+      state.numbers.length = 0;
+      let { min, max, quantity } = state;
 
-      min = Math.ceil(min);
-      max = Math.floor(max);
-
-      state.number = Math.floor(Math.random() * (max - min)) + min;
+      for (let i = 0; i < quantity; i++) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        state.numbers.push(Math.floor(Math.random() * (max - min)) + min);
+      }
     },
   },
 });
 
-export const { setValueMin, setValueMax, getRandom } = random.actions;
+export const { setValueMin, setValueMax, setDuantity, getRandom } = random.actions;
 export default random.reducer;

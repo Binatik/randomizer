@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 
 const Label = styled.label`
   position: absolute;
+  cursor: text;
   left: 0;
   top: 50%;
   height: auto;
@@ -16,6 +17,8 @@ const Label = styled.label`
 
 const Input = styled.input`
   position: relative;
+  display: block;
+  width: 100%;
   border: 1px solid ${props => props.theme.colors.iconic};
   border-radius: 3px;
   outline: none;
@@ -44,11 +47,11 @@ const Input = styled.input`
 
 const InputGroup = styled.div`
   position: relative;
-  max-width: 600px;
+  width: 100%;
   margin: 5px 0;
 
   @media ${props => props.theme.breakpoints.tabletFirst} {
-    width: 800px;
+    min-width: 400px;
   }
 `;
 const InputText = React.memo(({ labelId, text, actions }) => {

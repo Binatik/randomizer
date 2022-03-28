@@ -5,7 +5,7 @@ import Button from "./Button";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getRandomState } from "@src/toolkit";
-import { setValueMin, setValueMax, getRandom } from "@src/toolkit/slice/random";
+import { setValueMin, setValueMax, setDuantity, getRandom } from "@src/toolkit/slice/random";
 
 //StyledComponents
 import { Container } from "@src/store/styleComponents";
@@ -25,11 +25,19 @@ const FlexContainer = styled(Container)`
 `;
 
 const NumberContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   padding-bottom: 40px;
 `;
 
 const Number = styled.span`
+  margin: 0 20px;
   font-size: 3.5rem;
+
+  @media ${props => props.theme.breakpoints.tablet} {
+    font-size: 2rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -41,7 +49,7 @@ const Title = styled.h1`
 const Content = () => {
   const dispatch = useDispatch();
 
-  const { number } = useSelector(getRandomState);
+  const { numbers, min, max } = useSelector(getRandomState);
 
   function updateNumber() {
     return dispatch(getRandom());
@@ -54,12 +62,15 @@ const Content = () => {
           <FlexContainer>
             <Title>Случайные числа</Title>
             <NumberContainer>
-              <Number>{number}</Number>
+              {numbers.map((element, index) => (
+                element ? <Number key={index}>{element}</Number> : 'Нет чисел'
+              ))}
             </NumberContainer>
             <Container>
-              <InputText labelId={"minValue"} text="от" actions={setValueMin} />
-              <InputText labelId={"maxValue"} text="до" actions={setValueMax} />
-              <Button padding={"10px 0"} updateNumber={updateNumber} />
+              <InputText labelId={"minValue"} text={"от " + min} actions={setValueMin} />
+              <InputText labelId={"maxValue"} text={"до " + max} actions={setValueMax} />
+              <InputText labelId={"quantity"} text="количество" actions={setDuantity} />
+              <Button padding={"10px 0"} handleClick={updateNumber} />
             </Container>
           </FlexContainer>
         </Section>
