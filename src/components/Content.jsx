@@ -62,7 +62,7 @@ const Content = () => {
           <FlexContainer>
             <Title>Случайные числа</Title>
             <NumberContainer>
-              {numbers.length > 0 ? numbers.map((element, index) => <Number key={index}>{element}</Number>) : "Нет чисел."}
+              {numbers.length > 0 && numbers.length < 999 ? numbers.map((element, index) => <Number key={index}>{element}</Number>) : "Нет чисел."}
             </NumberContainer>
             <Container>
               <InputText labelId={"minValue"} text={"от " + min} actions={setValueMin} />
