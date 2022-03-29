@@ -37,7 +37,7 @@ const Form = styled.div`
 
 const Card = styled.span`
   padding: 10px;
-  margin: 10px 20px; 
+  margin: 10px 10px 20px 0; 
   border-radius: 3px;
   color: #fff;
   font-size: 3.1rem;
