@@ -21,19 +21,28 @@ const Main = styled.main`
 const FlexContainer = styled(Container)`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 `;
 
-const NumberContainer = styled.div`
+const Number = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   padding-bottom: 40px;
 `;
 
-const Number = styled.span`
-  margin: 0 20px;
-  font-size: 3.5rem;
+const Form = styled.div`
+  width: 100%;
+  padding: 10px;
+`;
+
+const Card = styled.span`
+  padding: 10px;
+  margin: 10px 20px; 
+  border-radius: 3px;
+  color: #fff;
+  font-size: 3.1rem;
+  box-shadow: ${props => props.theme.colors.auxiliary} 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  background-color: ${props => props.theme.colors.main};
 
   @media ${props => props.theme.breakpoints.tablet} {
     font-size: 2rem;
@@ -61,15 +70,15 @@ const Content = () => {
         <Section>
           <FlexContainer>
             <Title>Случайные числа</Title>
-            <NumberContainer>
-              {isNumber ? numbers.map((element, index) => <Number key={index}>{element}</Number>) : <Number>Нет чисел</Number>}
-            </NumberContainer>
-            <Container>
+            <Number>
+              {isNumber ? numbers.map((element, index) => <Card key={index}>{element}</Card>) : <Card>Нет чисел</Card>}
+            </Number>
+            <Form>
               <InputText labelId={"minValue"} text={"от " + min} actions={setValueMin} />
               <InputText labelId={"maxValue"} text={"до " + max} actions={setValueMax} />
               <InputText labelId={"quantity"} text="количество" actions={setDuantity} />
               <Button padding={"10px 0"} handleClick={updateNumber} />
-            </Container>
+            </Form>
           </FlexContainer>
         </Section>
       </Main>

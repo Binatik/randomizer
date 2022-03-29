@@ -29,9 +29,8 @@ const random = createSlice({
 
       min = Math.ceil(min);
       max = Math.floor(max);
-
-      if (quantity > 0 && quantity < 1000) state.isNumber = true;
-      else state.isNumber = false;
+ 
+      state.isNumber = quantity > 0 && quantity < 1000;
 
       if (state.isNumber) {
         for (let i = 0; i < quantity; i++) {

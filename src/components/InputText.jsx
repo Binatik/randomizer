@@ -51,7 +51,7 @@ const InputGroup = styled.div`
   margin: 5px 0;
 
   @media ${props => props.theme.breakpoints.tabletFirst} {
-    min-width: 400px;
+    width: 50%;
   }
 `;
 const InputText = React.memo(({ labelId, text, actions }) => {
