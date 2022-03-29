@@ -4,6 +4,7 @@ const initialState = {
   min: 0,
   max: 100,
   quantity: 1,
+  isNumber: true,
   numbers: [],
 };
 
@@ -26,10 +27,16 @@ const random = createSlice({
       state.numbers.length = 0;
       let { min, max, quantity } = state;
 
-      for (let i = 0; i < quantity; i++) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        state.numbers.push(Math.floor(Math.random() * (max - min)) + min);
+      min = Math.ceil(min);
+      max = Math.floor(max);
+
+      if (quantity > 0 && quantity < 1000) state.isNumber = true;
+      else state.isNumber = false;
+
+      if (state.isNumber) {
+        for (let i = 0; i < quantity; i++) {
+          state.numbers.push(Math.floor(Math.random() * (max - min)) + min);
+        }
       }
     },
   },

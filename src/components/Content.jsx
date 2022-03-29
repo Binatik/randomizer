@@ -49,7 +49,7 @@ const Title = styled.h1`
 const Content = () => {
   const dispatch = useDispatch();
 
-  const { numbers, min, max } = useSelector(getRandomState);
+  const { numbers, min, max, isNumber } = useSelector(getRandomState);
 
   function updateNumber() {
     return dispatch(getRandom());
@@ -62,7 +62,7 @@ const Content = () => {
           <FlexContainer>
             <Title>Случайные числа</Title>
             <NumberContainer>
-              {numbers.length > 0 && numbers.length < 999 ? numbers.map((element, index) => <Number key={index}>{element}</Number>) : "Нет чисел."}
+              {isNumber ? numbers.map((element, index) => <Number key={index}>{element}</Number>) : <Number>Нет чисел</Number>}
             </NumberContainer>
             <Container>
               <InputText labelId={"minValue"} text={"от " + min} actions={setValueMin} />
